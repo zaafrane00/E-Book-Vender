@@ -61,7 +61,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         if (userRepository.findAll().size()==0){
             User user = new User();
             user.setActive(true);
-            user.setUserName("admin");
+            user.setEmail("admin");
             user.setPassword(passwordEncoder.encode("admin"));
             user.setRoles("ROLE_ADMIN,ROLE_USER");
             userRepository.save(user);

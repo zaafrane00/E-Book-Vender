@@ -28,9 +28,9 @@ public class MyUserService implements UserDetailsService {
     CommandService commandService;
 
     @Override
-    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        Optional<User> user= userRepository.getUserByUserName(userName);
-        user.orElseThrow(()-> new UsernameNotFoundException("No user with the username "+userName));
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Optional<User> user= userRepository.getUserByEmail(email);
+        user.orElseThrow(()-> new UsernameNotFoundException("No user with the username "+email));
         // return user.map(MyUserDetails ::new).get();
         return new MyUserDetails(user.get());
     }
@@ -45,7 +45,7 @@ public class MyUserService implements UserDetailsService {
     }
 
     public User addUser(User user) throws Exception {
-        if (userRepository.getUserByUserName(user.getUserName()).isPresent()) throw new Exception("This " +
+        if (userRepository.getUserByEmail(user.getEmail()).isPresent()) throw new Exception("This " +
                 "username " +
                 "already exist");
         user.setPassword(securityConfig.passwordEncoder().encode(user.getPassword()));
@@ -55,7 +55,7 @@ public class MyUserService implements UserDetailsService {
     }
 
     public User addAdmin(User user) throws Exception {
-        if (userRepository.getUserByUserName(user.getUserName()).isPresent()) throw new Exception("This username " +
+        if (userRepository.getUserByEmail(user.getEmail()).isPresent()) throw new Exception("This username " +
                 "already exist");
         user.setPassword(securityConfig.passwordEncoder().encode(user.getPassword()));
         user.setRoles("ROLE_ADMIN");
@@ -76,7 +76,7 @@ public class MyUserService implements UserDetailsService {
 
     public User updateUserName(Long userId, User user){
         User u = getUserById(userId);
-        u.setUserName(user.getUserName());
+        u.setEmail(user.getEmail());
         return userRepository.save(u);
     }
 
