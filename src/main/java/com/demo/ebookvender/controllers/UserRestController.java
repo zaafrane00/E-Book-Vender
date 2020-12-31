@@ -1,5 +1,5 @@
 package com.demo.ebookvender.controllers;
-
+import org.springframework.security.core.Authentication;
 import com.demo.ebookvender.entities.User;
 import com.demo.ebookvender.services.MyUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,9 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4002/")
 @RestController
 @RequestMapping("")
 public class UserRestController {
@@ -22,6 +22,11 @@ public class UserRestController {
     @GetMapping("/users")
     public ResponseEntity<List<User>> getAllUsers() {
         return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
+    }
+
+    @GetMapping("user/connected")
+    public Authentication getCurrentUser(Authentication authentication){
+        return authentication;
     }
 
     @GetMapping("/user/{id}")
