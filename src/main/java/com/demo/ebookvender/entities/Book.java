@@ -34,12 +34,10 @@ public class Book {
     @Positive(message = "The price must be more " +
             "then 0")
     private double price;
-    @Nullable
-    @PastOrPresent(message = "A valid date" +
-            " can't be after the current date")
-    private Date releaseDate;
+    @NotNull(message = "The author's name can't be empty")
+    private String releaseDate;
 
-    public Book(String title, String author, double price, Date releaseDate) {
+    public Book(String title, String author, double price, String releaseDate) {
         this.title = title;
         this.author = author;
         this.price = price;

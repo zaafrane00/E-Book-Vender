@@ -18,7 +18,7 @@ public class Command {
     private Long id;
     @Column(updatable = false)
     private Date creationDate = new Date();
-    private boolean windedUp = false;
+    public boolean windedUp = false;
     @ManyToOne
     private User user;
 

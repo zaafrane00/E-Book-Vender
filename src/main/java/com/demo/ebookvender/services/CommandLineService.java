@@ -6,6 +6,7 @@ import com.demo.ebookvender.entities.CommandLine;
 import com.demo.ebookvender.repositories.CommandLineRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -72,7 +73,7 @@ public class CommandLineService {
     }
 
     public CommandLine updateCom(Long coId, Long bId, CommandLine c) throws Exception {
-        System.out.println(coId);
+
         if (commandService.getCmdById(coId).isWindedUp()) {
             throw new Exception("This command is " +
                     "winded you can't modify its lines");
@@ -81,5 +82,7 @@ public class CommandLineService {
         cl.setQuantity(c.getQuantity());
         return commandLineRepository.save(cl);
     }
+
+
 
 }

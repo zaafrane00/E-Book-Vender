@@ -6,6 +6,7 @@ import com.demo.ebookvender.repositories.CommandLineRepository;
 import com.demo.ebookvender.repositories.CommandRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -81,5 +82,7 @@ public class CommandService {
         }
         return total;
     }
+
+
 
 }

@@ -34,13 +34,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable().authorizeRequests()
                 .antMatchers("/bookstore/").permitAll()
                 .antMatchers("/bookstore/book/{id}").permitAll()
-                .antMatchers("/bookstore/book/**").hasRole("ADMIN")
-                .antMatchers("/command/**").hasAnyRole("ADMIN", "USER")
-                .antMatchers("/command-line/**").hasAnyRole("ADMIN", "USER")
-                .antMatchers("/user/add").permitAll()
-                .antMatchers("/admin/add").hasRole("ADMIN")
-                .antMatchers("/user/{id}/delete").hasRole("ADMIN")
-                .and().httpBasic();
+                /* .antMatchers("/bookstore/book/**").hasRole("ADMIN")
+                 .antMatchers("/command/**").hasAnyRole("ADMIN", "USER")
+                 .antMatchers("/command-line/**").hasAnyRole("ADMIN", "USER")*/
+                .antMatchers("/user/add").permitAll();
+               /* .antMatchers("/admin/add").hasRole("ADMIN")
+                .antMatchers("/user/{id}/delete").hasRole("ADMIN");*/
+               /* .and().httpBasic();*/
     }
 
 

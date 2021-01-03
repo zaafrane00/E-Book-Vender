@@ -111,7 +111,7 @@ public class BooksRestControllerTest {
 
     @Test
     public void addBookTest() throws Exception {
-        Book book = new Book("Les misérables", "Victor Hugo", 30, new Date());
+        Book book = new Book("Les misérables", "Victor Hugo", 30, "2008-01-17");
 
         when(bookService.addBook(any(Book.class))).thenReturn(book);
 
@@ -141,7 +141,7 @@ public class BooksRestControllerTest {
 
     @Test
     public void updateBookTest() throws Exception {
-        Book book = new Book(new Long(2), "Remember me", "Sophie Kinsella", 43, new Date());
+        Book book = new Book(new Long(2), "Remember me", "Sophie Kinsella", 43, "2008-01-17");
 
         when(bookService.updateBook(any(Book.class), anyLong())).thenReturn(book);
 
